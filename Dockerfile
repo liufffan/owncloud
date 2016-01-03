@@ -36,7 +36,7 @@ RUN pecl install APCu-4.0.10 redis memcached \
 	&& docker-php-ext-enable apcu redis memcached
 
 ENV OWNCLOUD_VERSION 8.2.2
-EXPOSE 9000
+
 VOLUME /var/www/html
 
 RUN curl -fsSL -o owncloud.tar.bz2 \
@@ -52,4 +52,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh 
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 9000
+
 CMD ["php-fpm"]
